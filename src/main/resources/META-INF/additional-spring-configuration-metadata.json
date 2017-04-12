@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "route.data.location",
+      "type": "java.lang.String",
+      "description": "This location should point (fully qualified) to the folder in this project called test-data."
+    },
+    {
+      "name": "project.base.folder",
+      "type": "java.lang.String",
+      "description": "Fully qualified path to the location of this project."
+    }
+  ] }

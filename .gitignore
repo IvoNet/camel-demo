@@ -1,7 +1,8 @@
 #### IvoNet ###
 
 .tmp
-
+.camel
+docker/volumes
 
 #### other ####
 
