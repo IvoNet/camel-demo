@@ -12,6 +12,30 @@ services:
     environment:
         - MYSQL_ROOT_PASSWORD=secret
 
+  activemq:
+    image: registry.gitlabcd.itv.local/vod-squad/activemq
+    ports:
+    - "8161:8161"
+    - "61616:61616"
+    - "61613:61613"
+    environment:
+    - ACTIVEMQ_MIN_MEMORY=512
+    - ACTIVEMQ_MAX_MEMORY=2048
+    - ACTIVEMQ_ENABLED_AUTH=true
+    - ACTIVEMQ_ADMIN_LOGIN=admin
+    - ACTIVEMQ_ADMIN_PASSWORD=secret
+    volumes:
+    - ./volumes/log/activemq:/var/log/activemq
+
+  ftp:
+    image: ivonet/ftp
+    ports:
+    - "11021:21"
+    - "30000-30009:30000-30009"
+    volumes:
+    - ./docker/ftp/passwd:/etc/pure-ftpd/passwd
+    - ./target/ftpusers:/home/ftpusers
+
 volumes:
   mysql-data:
     driver: local
