@@ -15,7 +15,6 @@ ftp:
     password: secret
 
 
-
 flyway:
   url: "jdbc:h2:mem:camel_demo;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:flyway_init.sql'"
   user: sa

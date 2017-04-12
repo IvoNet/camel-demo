@@ -1,32 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE project [
-        <!ELEMENT project (modelVersion|groupId|artifactId|version|packaging|name|description|parent|properties|dependencies|build)*>
-        <!ATTLIST project
-                xmlns CDATA #REQUIRED
-                xmlns:xsi CDATA #REQUIRED
-                xsi:schemaLocation CDATA #REQUIRED>
-        <!ELEMENT modelVersion (#PCDATA)>
-        <!ELEMENT groupId (#PCDATA)>
-        <!ELEMENT artifactId (#PCDATA)>
-        <!ELEMENT version (#PCDATA)>
-        <!ELEMENT packaging (#PCDATA)>
-        <!ELEMENT name (#PCDATA)>
-        <!ELEMENT description (#PCDATA)>
-        <!ELEMENT parent (groupId|artifactId|version|relativePath)*>
-        <!ELEMENT relativePath (#PCDATA)>
-        <!ELEMENT properties (project.build.sourceEncoding|project.reporting.outputEncoding|java.version|camel.version)*>
-        <!ELEMENT project.build.sourceEncoding (#PCDATA)>
-        <!ELEMENT project.reporting.outputEncoding (#PCDATA)>
-        <!ELEMENT java.version (#PCDATA)>
-        <!ELEMENT camel.version (#PCDATA)>
-        <!ELEMENT dependencies (dependency)*>
-        <!ELEMENT dependency (groupId|artifactId|version|scope|optional)*>
-        <!ELEMENT scope (#PCDATA)>
-        <!ELEMENT optional (#PCDATA)>
-        <!ELEMENT build (plugins)*>
-        <!ELEMENT plugins (plugin)*>
-        <!ELEMENT plugin (groupId|artifactId)*>
-        ]>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -53,6 +25,20 @@
         <camel.version>2.18.3</camel.version>
     </properties>
 
+    <!-- import Spring-Boot and Camel BOM -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-parent</artifactId>
+                <version>${camel.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,12 +55,18 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
-            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-ftp</artifactId>
-            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -130,12 +122,25 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+         <profile>
+             <id>java8-doclint-disabled</id>
+             <activation>
+                 <jdk>[1.8,)</jdk>
+             </activation>
+             <properties>
+                 <javadoc.opts>-Xdoclint:none</javadoc.opts>
+             </properties>
+         </profile>
+     </profiles>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 
