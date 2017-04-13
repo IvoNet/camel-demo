@@ -1,7 +1,16 @@
 # Camel Demo
 
 This project holds all kinds of Camel demo routes
+
 All things should work :-) if you can follow instructions ...
+
+The reason I chose spring-boot as the glue to make it all work is that spring 
+makes it very easy to integrate all components needed and because of that I can 
+start playing with routes almost immediately
+
+This project works best when run in combination with docker. I've included a `docker-compose.yml`
+file providing all needed 'middleware'. This enables actually testing the ftp protocol or jms, mq and stuff.
+You can read more about that in the docker section.
 
 ## Prerequisites
 
@@ -42,16 +51,12 @@ ftp docker container for the admin user.
 2017-04-13 00:32:05.844  INFO 9736 --- [localhost:11021] FtpToFileRoute                           : Found file [HelloWorld.txt] and cp-ing it to: /Users/ivonet/dev/camel-demo/target/FtpToFileRoute
 ```
 
-# docker-compose
+# docker
 
-The docker compose file in this project has been tuned to work for this demo.
+The `docker-compose.yml` file in this project has been tuned to work for this camel-demo project.
 So some volumes have been mounted with a specific goal.
 
-e.g. the ftp service will actually mount volumes in `test-data/ftp`
-
-Note that all commands should be run from the root of this project
-
-## Start / Stop
+## Start / Stop docker-compose
 
 Start:
 
@@ -70,14 +75,27 @@ docker-compose down [-v]
 the -v option will also remove the volumes created
 
 
-# FTP User
+# FTP docker image
+
+In order to demo the ftp routes in this project an ftp server has been configured in the docker-compose file.
+This ftp server mounts 'native local' folders in the `test-data/ftp` folder but it will also actually enable 
+the ftp protocol. So the FtpTo*Routes really talk ftp in the demo.
+
+You will be able to see what happens on your native file system though. Please look at the ftp config in the 
+docker-compose file to see how that works.
+
+## FTP User
 
 This project has two users pre-configured:
 
 * USER: admin / PWD: secret
 * USER: user / PWD: secret
 
-You can add your own if you want to play:
+Their home folders reside in `test-data/ftp` and the users have been saved in `docker/ftp/passwd/pureftpd.passwd` file as described below.
+
+### FTP Create your own user
+
+You can add your own user(s) if you want to play:
 
 First you need to start the ivonet/ftp docker container:
 
@@ -103,12 +121,18 @@ Exit the image with logout and stop the image with ctrl-c or
 docker stop ftp
 ```
 
+## ActiveMQ docker image
 
-# ActiveMQ
+For this demo ActiveMQ has been chosen as the JMS provider and Message Queue middleware.
 
 * [Console](http://localhost:8161) (admin:secret)
+* read more about this image [here](https://hub.docker.com/r/ivonet/activemq/)
 
-# Mysql
+## Mysql docker image
+
+To make looking at the results of what happens to to de db `phpmyadmin` has also been included.
 
 * [Console](http://localhost:8888) (root:secret)
+* read more about this image [here](https://hub.docker.com/r/ivonet/mysql/)
+* this images looks in `docker/mysql/setup` for initializing sql scripts when the first `docker-compose up` is done
 
