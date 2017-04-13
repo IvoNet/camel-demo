@@ -26,7 +26,6 @@ public class FtpToFileRoute extends RouteBuilder {
     public void configure() throws Exception {
         final String projectBaseLocation = context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
-//        from("ftp://{{ftp.user.name}}:{{ftp.user.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true&delete=true") // Deletes the file
         from("ftp://{{ftp.user.name}}:{{ftp.user.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true&move=.camel")
                 .routeId(name)
                 .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/target/", projectBaseLocation))

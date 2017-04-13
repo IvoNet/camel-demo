@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * When running this example and you have configured the project.base.folder
  * correctly it will copy all files from the test-data/SimpleFileCopyRoute folder
- * to target/SimpleFileCopyRoute folder.
+ * to test-data/ftp/admin folder which is also the 'home' folder for the ftp admin user.
  * <p>
  * It is named to illustrate that and it adds some logs and a bit of Simple language
  * usage.
@@ -29,9 +29,10 @@ public class SimpleFileCopyRoute extends RouteBuilder {
     public void configure() throws Exception {
         final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
-        from(String.format("file://%s/test-data/%s/?noop=true", projectBaseLocation, name))
+
+        from(String.format("file://%s/test-data/startingPoint/?noop=true", projectBaseLocation))
                 .routeId(name)
                 .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/ftp/admin/", projectBaseLocation))
-                .to(String.format("file://%s/test-data/ftp/admin/", projectBaseLocation));
+                .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation));
     }
 }

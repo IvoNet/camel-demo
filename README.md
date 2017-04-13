@@ -152,3 +152,5 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * UnitTesting of routes
 * usage of direct:...
 * usage of mock
+* Type conversions
+* Processors with exchange type manipulation
