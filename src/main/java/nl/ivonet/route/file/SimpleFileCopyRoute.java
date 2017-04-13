@@ -1,7 +1,9 @@
 package nl.ivonet.route.file;
 
 import lombok.extern.slf4j.Slf4j;
+import nl.ivonet.context.CamelDemoContext;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,12 +22,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleFileCopyRoute extends RouteBuilder {
 
+    @Autowired
+    private CamelDemoContext context;
+
     @Override
     public void configure() throws Exception {
+        final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
-        from(String.format("file://{{project.base.folder}}/test-data/%s/?noop=true", name))
+        from(String.format("file://%s/test-data/%s/?noop=true", projectBaseLocation, name))
                 .routeId(name)
-                .log("Found file [$simple{header.CamelFileName}] and copying it to: {{project.base.folder}}/test-data/ftp/admin/")
-                .to("file://{{project.base.folder}}/test-data/ftp/admin/");
+                .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/ftp/admin/", projectBaseLocation))
+                .to(String.format("file://%s/test-data/ftp/admin/", projectBaseLocation));
     }
 }

@@ -1,9 +1,5 @@
 
 
-project:
-  base:
-    folder: /Users/ivonet/dev/camel-demo
-
 ftp:
   host: localhost
   port: 11021

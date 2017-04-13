@@ -136,3 +136,19 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * read more about this image [here](https://hub.docker.com/r/ivonet/mysql/)
 * this images looks in `docker/mysql/setup` for initializing sql scripts when the first `docker-compose up` is done
 
+
+# Wishes
+
+* Error handling
+* FileToMqJms
+* MqWithContract
+* PubSub (topic)
+    * persisted read/write
+    * non persisted read/write
+* Database as source
+* Database as target
+* transformation during route
+* add routes to routes
+* UnitTesting of routes
+* usage of direct:...
+* usage of mock
