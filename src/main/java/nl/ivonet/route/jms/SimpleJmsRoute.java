@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 
 /**
  * JMS ActiveMQ demo.
- *
+ * <p>
  * ActiveMQ needs to be configured to work.
  * The {@link org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration} class will
  * take care of the auto configuration of the {@link org.apache.activemq.ActiveMQConnectionFactory}.
- *
+ * <p>
  * in the first route a file test-data/SimpleJmsRoute folder will be routed to the
  * SimpleJmsRoute Queue in ActiveMQ as configured by the spring.activemq.broker-url property
  * in the application.yml file.
- *
+ * <p>
  * The second route watches the SimpleJmsRoute Queue and 'consumes' the messages put on that Queue and
  * logs the body with some help of a {@link Processor} and sends the file to the test-data/ftp/admin
  * folder.
@@ -50,8 +50,8 @@ public class SimpleJmsRoute extends RouteBuilder {
         from(queue)
                 .routeId(name + "_2")
                 .process(exchange -> {
-                    final Object body = exchange.getIn().getBody();
-                    log.info(new String((byte[]) body));
+                    String body = exchange.getIn().getBody(String.class);
+                    log.info(body);
                 })
                 .to(String.format("file://%s/test-data/ftp/admin/", projectBaseLocation));
     }

@@ -19,8 +19,9 @@ You can read more about that in the docker section.
 * java 8 installed
 * maven 3+ installed
 * a sense of adventure :-)
+* a good OS like linux or macOs :-)
 
-# run the demo
+# Running the demo
 
 In order to be able to run the demo you first need to start
 the docker containers from the docker-compose file.
@@ -139,6 +140,7 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 
 # Wishes
 
+* EIP's 
 * Error handling
 * FileToMqJms
 * MqWithContract
@@ -154,3 +156,10 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * usage of mock
 * Type conversions
 * Processors with exchange type manipulation
+* Jaxb2 marshalling / unmarshalling
+* Json 
+* GZip / Zip file
+* csv
+* XPath
+*
+
