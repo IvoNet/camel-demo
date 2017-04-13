@@ -2,19 +2,38 @@ package nl.ivonet.route.jms;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
+ * JMS ActiveMQ demo.
+ *
+ * ActiveMQ needs to be configured to work.
+ * The {@link org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration} class will
+ * take care of the auto configuration of the {@link org.apache.activemq.ActiveMQConnectionFactory}.
+ *
+ * in the first route a file test-data/SimpleJmsRoute folder will be routed to the
+ * SimpleJmsRoute Queue in ActiveMQ as configured by the spring.activemq.broker-url property
+ * in the application.yml file.
+ *
+ * The second route watches the SimpleJmsRoute Queue and 'consumes' the messages put on that Queue and
+ * logs the body with some help of a {@link Processor} and sends the file to the test-data/ftp/admin
+ * folder.
+ *
  * @author ivonet
  */
 @Slf4j
 @Component
 public class SimpleJmsRoute extends RouteBuilder {
 
+    private final CamelDemoContext context;
+
     @Autowired
-    private CamelDemoContext context;
+    public SimpleJmsRoute(final CamelDemoContext context) {
+        this.context = context;
+    }
 
 
     @Override

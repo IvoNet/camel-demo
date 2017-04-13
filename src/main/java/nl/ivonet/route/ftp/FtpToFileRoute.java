@@ -19,8 +19,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class FtpToFileRoute extends RouteBuilder {
 
+    private final CamelDemoContext context;
+
     @Autowired
-    private CamelDemoContext context;
+    public FtpToFileRoute(final CamelDemoContext context) {
+        this.context = context;
+    }
 
     @Override
     public void configure() throws Exception {
