@@ -36,7 +36,7 @@ public class SimpleFileCopyRoute extends RouteBuilder {
 
         from(String.format("file://%s/test-data/startingPoint/?noop=true", projectBaseLocation))
                 .routeId(name)
-                .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/ftp/admin/", projectBaseLocation))
+                .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
                 .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation));
     }
 }

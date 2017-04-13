@@ -36,21 +36,28 @@ mvn clean package spring-boot:run
 
 ## What will happen
 
-* a HelloWorld file is located here: `test-data/SimpleFileCopyRoute/HelloWorld.txt`
-* this file will be copied by the SimpleFileCopyRoute to the `test-data/ftp/admin` folder
+A scenario something like the one below will play out... it changes as I add new demo's but you'll get the drift:
+
+* a HelloWorld file is located here: `test-data/startingPoint/HelloWorld.txt`
+* this file will be copied by the SimpleFileCopyRoute to the `test-data/SimpleJmsRoute` folder
+* The SimpleJmsRoute_1 listens here and routes the file to ActiveMQ Queue SimpleJmsRoute
+* The SimpleJmsRoute_2 listens here and routes the message to the `test-data/ftp/admin` folder
 * the FtpToFtoRoute will see this because that is the volume "mounted" by the 
 ftp docker container for the admin user. 
-* The FtpToFtoRoute will copy the file to the ftp `user` account 
+* The FtpToFtpRoute will copy the file to the ftp `user` account 
 * it will also move the file in the `admin` account to a .camel folder
 * The FtpToFileRoute will see the file in the ftp `user` account and copy it to `target/FtpToFileRoute`
 * it will also move the file in the `user` account to .camel in its home folder
 * the log will also print out something like:
 
 ```text
-2017-04-13 00:32:05.277  INFO 9736 --- [eFileCopyRoute/] SimpleFileCopyRoute                      : Found file [HelloWorld.txt] and copying it to: /Users/ivonet/dev/camel-demo/test-data/ftp/admin/
-2017-04-13 00:32:05.341  INFO 9736 --- [localhost:11021] FtpToFtpRoute                            : Found file [HelloWorld.txt] and cp-ing it to the ftp user: user
-2017-04-13 00:32:05.844  INFO 9736 --- [localhost:11021] FtpToFileRoute                           : Found file [HelloWorld.txt] and cp-ing it to: /Users/ivonet/dev/camel-demo/target/FtpToFileRoute
+2017-04-13 22:11:25.048  INFO 5473 --- [/startingPoint/] SimpleFileCopyRoute                      : Found file [HelloWorld.txt] and copying it to: /Users/ivonet/dev/camel-demo/test-data/SimpleJmsRoute/
+2017-04-13 22:11:25.192  INFO 5473 --- [SimpleJmsRoute]] nl.ivonet.route.jms.SimpleJmsRoute       : Hello, world!
+2017-04-13 22:11:25.666  INFO 5473 --- [localhost:11021] FtpToFtpRoute                            : Found file [HelloWorld.txt] and cp-ing it to the ftp user: user
+2017-04-13 22:11:26.169  INFO 5473 --- [localhost:11021] FtpToFileRoute                           : Found file [HelloWorld.txt] and copying it to: /Users/ivonet/dev/camel-demo/target/
 ```
+
+The whole idea of the above thing is to play around with routes as to get familiar with it.
 
 # docker
 
