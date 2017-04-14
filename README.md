@@ -41,10 +41,9 @@ A scenario something like the one below will play out... it changes as I add new
 * a HelloWorld file is located here: `test-data/startingPoint/HelloWorld.txt`
 * this file will be copied by the SimpleFileCopyRoute to the `test-data/SimpleJmsRoute` folder
 * The SimpleJmsRoute_1 listens here and routes the file to ActiveMQ Queue SimpleJmsRoute
-* The SimpleJmsRoute_2 listens here and routes the message to the `test-data/ftp/admin` folder
-* the FtpToFtoRoute will see this because that is the volume "mounted" by the 
-ftp docker container for the admin user. 
-* The FtpToFtpRoute will copy the file to the ftp `user` account 
+* The SimpleJmsRoute_2 listens here and routes the message to the `test-data/ftp/admin` folder and prints the content of the body to console
+* the FtpToFtpRoute will see this because that is the volume "mounted" by the ftp docker container for the admin user. 
+* The FtpToFtpRoute will copy the file to the ftp `user` account through the ftp protocol
 * it will also move the file in the `admin` account to a .camel folder
 * The FtpToFileRoute will see the file in the ftp `user` account and copy it to `target/FtpToFileRoute`
 * it will also move the file in the `user` account to .camel in its home folder
