@@ -79,7 +79,7 @@ Stop:
 docker-compose down [-v]
 ```
 
-the -v option will also remove the volumes created
+the -v option will also remove the docker volumes created.
 
 
 # FTP docker image
@@ -153,7 +153,7 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * PubSub (topic)
     * persisted read/write
     * non persisted read/write
-* Database as source
+* Database as monitored (input) source
 * Database as target
 * transformation during route
 * add routes to routes

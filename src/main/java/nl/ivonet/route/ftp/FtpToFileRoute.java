@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * Ftp consuming example.
  * <p>
- * To see this route work just move the file from test-data/ftp/user/camel to test-data/ftp/user.
+ * To see this route work just move the file from test-data/ftp/user/.camel to test-data/ftp/user.
  * just look at the log and see that the file has been moved back to the camel folder but also
  * appears in target/FtpRoute.
  *
@@ -28,7 +28,7 @@ public class FtpToFileRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        final String projectBaseLocation = context.projectBaseLocation();
+        final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
         from("ftp://{{ftp.user.name}}:{{ftp.user.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true&move=.camel")
                 .routeId(name)
