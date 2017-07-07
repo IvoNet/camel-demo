@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * just look at the log and see that the file has been moved back to the camel folder but also
  * appears in target/FtpRoute.
  *
- * @author ivonet
+ * @author Ivo Woltring
  */
 @Slf4j
 @Component
