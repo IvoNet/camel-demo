@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 /**
- * @author ivonet
+ * @author Ivo Woltring
  */
 @Component
 public class CamelDemoContext {
