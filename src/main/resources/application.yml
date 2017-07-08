@@ -1,5 +1,4 @@
 
-
 ftp:
   host: localhost
   port: 11021
@@ -9,7 +8,6 @@ ftp:
   admin:
     name: admin
     password: secret
-
 
 flyway:
   url: "jdbc:h2:mem:camel_demo;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:flyway_init.sql'"

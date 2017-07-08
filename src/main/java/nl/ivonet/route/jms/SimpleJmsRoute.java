@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  * logs the body with some help of a {@link Processor} and sends the file to the test-data/ftp/admin
  * folder.
  *
- * @author ivonet
+ * @author Ivo Woltring
  */
 @Slf4j
 @Component

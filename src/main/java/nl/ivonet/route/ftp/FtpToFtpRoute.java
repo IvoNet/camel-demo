@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * if you add a file to the test-data/ftp/admin folder it will be picked up by this route and uploaded to
  * the ftp 'user' where the {@link FtpToFileRoute} will pick it up...
  *
- * @author ivonet
+ * @author Ivo Woltring
  */
 @Slf4j
 @Component
