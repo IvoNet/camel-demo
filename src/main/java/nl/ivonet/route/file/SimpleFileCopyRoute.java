@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * <p>
  * If you remove '?noop=true' the copy will become a move.
  *
- * @author ivonet
+ * @author Ivo Woltring
  */
 @Slf4j
 @Component
