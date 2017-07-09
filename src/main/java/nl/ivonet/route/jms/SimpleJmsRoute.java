@@ -2,7 +2,6 @@ package nl.ivonet.route.jms;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,15 +13,15 @@ import org.springframework.stereotype.Component;
  * The {@link org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration} class will
  * take care of the auto configuration of the {@link org.apache.activemq.ActiveMQConnectionFactory}.
  * <p>
- * in the first route a file test-data/SimpleJmsRoute folder will be routed to the
+ * In the first route a file test-data/SimpleJmsRoute folder will be routed to the
  * SimpleJmsRoute Queue in ActiveMQ as configured by the spring.activemq.broker-url property
  * in the application.yml file.
- * <p>
- * The second route watches the SimpleJmsRoute Queue and 'consumes' the messages put on that Queue and
- * logs the body with some help of a {@link Processor} and sends the file to the test-data/ftp/admin
- * folder.
  *
- * For this route to work you need the org.apache.camel:camel-jms dependency in your pom
+ * For this route to work you need the the following dependencies:
+ * <ul>
+ * <li>org.apache.activemq:activemq-all our case the org.springframework.boot:spring-boot-starter-activemq</li>
+ * <li>org.apache.camel:camel-jms</li>
+ * </ul>
  *
  * @author Ivo Woltring
  */
