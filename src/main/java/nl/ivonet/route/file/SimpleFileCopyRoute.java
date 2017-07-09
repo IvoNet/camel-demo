@@ -42,8 +42,10 @@ public class SimpleFileCopyRoute extends RouteBuilder {
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
                 .log("Found file [$simple{header.CamelFileName}] not processing xml files in this route.")
+                .stop()
                 .otherwise()
                 .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
+                .end()
                 .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation));
     }
 }
