@@ -155,6 +155,7 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
     * non persisted read/write
 * Database as monitored (input) source
 * Database as target
+* Scheduled polling consumer
 * transformation during route
 * add routes to routes
 * UnitTesting of routes
