@@ -22,6 +22,8 @@ import org.springframework.stereotype.Component;
  * logs the body with some help of a {@link Processor} and sends the file to the test-data/ftp/admin
  * folder.
  *
+ * For this route to work you need the org.apache.camel:camel-jms dependency in your pom
+ *
  * @author Ivo Woltring
  */
 @Slf4j

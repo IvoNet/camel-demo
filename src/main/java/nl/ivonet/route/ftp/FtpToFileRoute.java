@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
  * just look at the log and see that the file has been moved back to the camel folder but also
  * appears in target/FtpRoute.
  *
+ * For this route to work you need the org.apache.camel:camel-ftp dependency in your pom
+ *
  * @author Ivo Woltring
  */
 @Slf4j
