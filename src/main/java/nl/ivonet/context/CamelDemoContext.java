@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 /**
+ * To be injected where we need context stuff.
+ *
  * @author Ivo Woltring
  */
 @Component

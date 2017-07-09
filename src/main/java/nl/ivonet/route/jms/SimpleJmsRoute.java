@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
  * ActiveMQ needs to be configured to work.
  * The {@link org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration} class will
  * take care of the auto configuration of the {@link org.apache.activemq.ActiveMQConnectionFactory}.
+ * The endpoint provided in the application.yml (or application.properties) file will tell the
+ * autoconfigure with which url to create the connectionFactory.
  * <p>
  * In the first route a file test-data/SimpleJmsRoute folder will be routed to the
  * SimpleJmsRoute Queue in ActiveMQ as configured by the spring.activemq.broker-url property

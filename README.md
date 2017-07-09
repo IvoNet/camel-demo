@@ -149,6 +149,7 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * EIP's 
 * Error handling
 * FileToMqJms
+* XPath in path
 * MqWithContract
 * PubSub (topic)
     * persisted read/write
