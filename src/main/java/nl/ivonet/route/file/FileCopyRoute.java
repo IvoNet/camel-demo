@@ -23,12 +23,12 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class SimpleFileCopyRoute extends RouteBuilder {
+public class FileCopyRoute extends RouteBuilder {
 
     private final CamelDemoContext context;
 
     @Autowired
-    public SimpleFileCopyRoute(final CamelDemoContext context) {
+    public FileCopyRoute(final CamelDemoContext context) {
         this.context = context;
     }
 

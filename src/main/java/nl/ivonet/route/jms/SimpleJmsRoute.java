@@ -31,22 +31,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleJmsRoute extends RouteBuilder {
 
-    private final CamelDemoContext context;
+    private final String projectBaseLocation;
 
     @Autowired
     public SimpleJmsRoute(final CamelDemoContext context) {
-        this.context = context;
+        this.projectBaseLocation = context.projectBaseLocation();
     }
 
 
     @Override
     public void configure() throws Exception {
-        final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
         final String queue = String.format("jms:queue:%s", name);
 
 
-        from(String.format("file://%s/test-data/%s/", projectBaseLocation, name))
+        from(String.format("file://%s/test-data/%s/", this.projectBaseLocation, name))
                 .routeId(name + "_1")
                 .to(queue);
 
@@ -56,6 +55,6 @@ public class SimpleJmsRoute extends RouteBuilder {
                     String body = exchange.getIn().getBody(String.class);
                     log.info(body);
                 })
-                .to(String.format("file://%s/test-data/ftp/admin/", projectBaseLocation));
+                .to(String.format("file://%s/test-data/ftp/admin/", this.projectBaseLocation));
     }
 }
