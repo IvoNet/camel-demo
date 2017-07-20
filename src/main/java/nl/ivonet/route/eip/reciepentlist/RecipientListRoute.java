@@ -2,7 +2,7 @@ package nl.ivonet.route.eip.reciepentlist;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedReciepentList;
+import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedRecipientList;
 import nl.ivonet.route.file.FileCopyRoute;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
  *
  * In this demo we monitor the test-data/eip/recipient-list folder for XML files.
  * The {@link FileCopyRoute} will copy the xml files found in this folder.
- * If it is a XML file then we ask the {@link AnnotatedReciepentList} class to decide where to sent the message.
+ * If it is a XML file then we ask the {@link AnnotatedRecipientList} class to decide where to sent the message.
  * If it is not an XML file we will not do anything with the file.
  *
- * We also read from the routes decided by the {@link  AnnotatedReciepentList} class to log the message put on those queues
+ * We also read from the routes decided by the {@link  AnnotatedRecipientList} class to log the message put on those queues
  * just to show that it happened as we expected.
  * In these rotes we get the actual message from the xml file by XPath and put them in the body to log them later.
  *
@@ -45,7 +45,7 @@ public class RecipientListRoute extends RouteBuilder {
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
                 .log("Found file [$simple{header.CamelFileName}] processing xml files in this route.")
-                .bean(AnnotatedReciepentList.class)
+                .bean(AnnotatedRecipientList.class)
                 .recipientList(header("recipients"))
                 .end()
                 .otherwise()

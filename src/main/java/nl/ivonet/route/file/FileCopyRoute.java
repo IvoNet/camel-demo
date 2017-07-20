@@ -2,7 +2,7 @@ package nl.ivonet.route.file;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedReciepentList;
+import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedRecipientList;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,8 +17,10 @@ import org.springframework.stereotype.Component;
  * <p>
  * If you remove '?noop=true' the copy will become a move.
  * <p>
- * In this example a kind of filter is build in. This specific route takes all files except for files
- * ending with .xml
+ * In this example a kind of filter is build in.
+ * This specific route takes all files but send them to different end-points.
+ * The xml files will be send to the eip/recipient-list. In the RecipientList demo I will do the same but illustrate more.
+ * The {@link AnnotatedRecipientList} class is being reused here.
  *
  * @author Ivo Woltring
  */
@@ -43,7 +45,7 @@ public class FileCopyRoute extends RouteBuilder {
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
                 .log("Found file [$simple{header.CamelFileName}] and will copy them to eip recipient-list.")
-                .bean(AnnotatedReciepentList.class)
+                .bean(AnnotatedRecipientList.class)
                 .recipientList(header("recipients"))
                 .end()
                 .otherwise()

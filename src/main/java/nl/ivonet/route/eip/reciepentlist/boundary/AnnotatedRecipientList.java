@@ -10,10 +10,19 @@ import org.apache.camel.language.XPath;
  * @author Ivo Woltring
  */
 @Slf4j
-public class AnnotatedReciepentList {
+public class AnnotatedRecipientList {
 
+    /**
+     * As you can see is the return type an array of strings.
+     * These strings are the endpoints to the places where the messages need to be delivered.
+     * in this example I only put in one destination per list but you can of course play around with this.
+     *
+     * @param attribute the "test" attribute in the message element
+     * @return an array of endpoints
+     */
     @RecipientList
     public String[] route(@XPath("/message/@test") final String attribute) {
+
         if (isATestMessage(attribute)) {
             log.info("Is a test message");
             return new String[]{"jms:test"};
