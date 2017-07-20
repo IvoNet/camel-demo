@@ -1,4 +1,4 @@
-package nl.ivonet.route.eip.reciepentlist.boundary;
+package nl.ivonet.route.eip.message_routing.reciepent_list.boundary;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.RecipientList;

@@ -2,10 +2,13 @@ package nl.ivonet.route.file;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedRecipientList;
+import nl.ivonet.route.eip.message_routing.reciepent_list.boundary.AnnotatedRecipientList;
+import nl.ivonet.route.file.boundary.XmlRecipientList;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static java.lang.String.format;
 
 /**
  * When running this example and you have configured the project.base.folder
@@ -40,17 +43,17 @@ public class FileCopyRoute extends RouteBuilder {
         final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
 
-        from(String.format("file://%s/test-data/startingPoint/?noop=true", projectBaseLocation))
+        from(format("file://%s/test-data/startingPoint/?noop=true", projectBaseLocation))
                 .routeId(name)
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
                 .log("Found file [$simple{header.CamelFileName}] and will copy them to eip recipient-list.")
-                .bean(AnnotatedRecipientList.class)
+                .bean(XmlRecipientList.class)
                 .recipientList(header("recipients"))
                 .end()
                 .otherwise()
-                .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
-                .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation))
+                .log(format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
+                .to(format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation))
                 .stop();
     }
 }

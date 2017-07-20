@@ -1,8 +1,8 @@
-package nl.ivonet.route.eip.reciepentlist;
+package nl.ivonet.route.eip.message_routing.reciepent_list;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedRecipientList;
+import nl.ivonet.route.eip.message_routing.reciepent_list.boundary.AnnotatedRecipientList;
 import nl.ivonet.route.file.FileCopyRoute;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class RecipientListRoute extends RouteBuilder {
         final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
 
-        from(String.format("file://%s/test-data/eip/recipient-list/", projectBaseLocation))
+        from(String.format("file://%s/test-data/eip/message_routing/recipient_list/", projectBaseLocation))
                 .routeId(name)
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
