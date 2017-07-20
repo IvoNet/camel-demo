@@ -1,1 +1,2 @@
-<message test="false">This is not a test message</message>
+<?xml version="1.0" encoding="UTF-8"?>
+<message test="false">This is a production message</message>

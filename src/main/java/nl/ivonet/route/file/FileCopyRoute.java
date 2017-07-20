@@ -2,6 +2,7 @@ package nl.ivonet.route.file;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
+import nl.ivonet.route.eip.reciepentlist.boundary.AnnotatedReciepentList;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,11 +42,13 @@ public class FileCopyRoute extends RouteBuilder {
                 .routeId(name)
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
-                .log("Found file [$simple{header.CamelFileName}] not processing xml files in this route.")
-                .stop()
+                .log("Found file [$simple{header.CamelFileName}] and will copy them to eip recipient-list.")
+                .bean(AnnotatedReciepentList.class)
+                .recipientList(header("recipients"))
+                .end()
                 .otherwise()
                 .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
-                .end()
-                .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation));
+                .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation))
+                .end();
     }
 }
