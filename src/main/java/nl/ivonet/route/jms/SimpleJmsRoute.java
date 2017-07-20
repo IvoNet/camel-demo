@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  *
  * For this route to work you need the the following dependencies:
  * <ul>
- * <li>org.apache.activemq:activemq-all our case the org.springframework.boot:spring-boot-starter-activemq</li>
+ * <li>org.apache.activemq:activemq-all or in our case the org.springframework.boot:spring-boot-starter-activemq</li>
  * <li>org.apache.camel:camel-jms</li>
  * </ul>
  *
