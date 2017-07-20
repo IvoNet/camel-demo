@@ -51,6 +51,6 @@ public class FileCopyRoute extends RouteBuilder {
                 .otherwise()
                 .log(String.format("Found file [$simple{header.CamelFileName}] and copying it to: %s/test-data/SimpleJmsRoute/", projectBaseLocation))
                 .to(String.format("file://%s/test-data/SimpleJmsRoute/", projectBaseLocation))
-                .end();
+                .stop();
     }
 }
