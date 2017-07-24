@@ -150,6 +150,7 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * Error handling
 * FileToMqJms
 * XPath in path
+* Quartz scheduling (quartz2://report?cron=0+0+6+*+*+? or sumesuch) 
 * MqWithContract
 * PubSub (topic)
     * persisted read/write

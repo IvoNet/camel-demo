@@ -1,5 +1,6 @@
 package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans;
 
+import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.Order;
 import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.OrderLine;
 import nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary.Address;
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
  *
  * @author Ivo Woltring
  */
+@Slf4j
 @SuppressWarnings({"UtilityClass", "UtilityClassWithoutPrivateConstructor"})
 public final class CsvToJson {
 
@@ -31,6 +33,7 @@ public final class CsvToJson {
             orderLine.setDateTime(LocalDateTime.parse(collect.get(1)));
             orderLine.setAddress(new Address(collect.get(2), Integer.valueOf(collect.get(3)), collect.get(4)));
             orderLine.setNumberOfItems(Integer.valueOf(collect.get(5)));
+            log.info(orderLine.toString());
             order.add(orderLine);
         }
         return order.asJson();

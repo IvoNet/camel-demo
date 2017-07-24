@@ -1,14 +1,14 @@
 package nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
+import lombok.Data;
 
 /**
- * Im an Address man can't you see :-).
+ * I'm an Address man can't you see :-).
  *
  * @author Ivo Woltring
  */
-@Value
+@Data
 @AllArgsConstructor
 public class Address {
     private String zip;

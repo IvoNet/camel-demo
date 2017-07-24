@@ -7,3 +7,4 @@ rm -rf ./test-data/eip/message_routing/recipient_list
 rm -f ./target/FtpToFileRoute/*
 rm -f ./target/MessageTranslatorUsingProcessor/*
 rm -f ./target/MessageTranslatorUsingBean/*
+rm -f ./target/MessageTranslatorUsingTransform/*

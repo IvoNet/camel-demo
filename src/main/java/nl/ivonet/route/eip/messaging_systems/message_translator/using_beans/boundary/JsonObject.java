@@ -8,10 +8,12 @@ public class JsonObject {
     public String asJson() {
 
         final ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
         try {
             return mapper.writeValueAsString(this);
         } catch (final JsonProcessingException e) {
             throw new IllegalStateException(e);
         }
     }
+
 }
