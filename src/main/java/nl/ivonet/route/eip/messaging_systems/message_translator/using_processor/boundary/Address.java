@@ -3,6 +3,8 @@ package nl.ivonet.route.eip.messaging_systems.message_translator.using_processor
 import lombok.AllArgsConstructor;
 
 /**
+ * Im an Address man can't you see :-).
+ *
  * @author Ivo Woltring
  */
 @AllArgsConstructor
