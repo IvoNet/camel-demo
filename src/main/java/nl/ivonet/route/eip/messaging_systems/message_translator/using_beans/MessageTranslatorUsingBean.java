@@ -37,8 +37,11 @@ public class MessageTranslatorUsingBean extends RouteBuilder {
         from(format("file://%s/target/MessageTranslatorUsingProcessor/?noop=true", projectBaseLocation))
                 .routeId(name)
                 .log("Found file [$simple{header.CamelFileName}] processing csv to json in this route.")
+                .log("Input message:\n${body}")
+                .unmarshal().csv()
+                .log("CSV unmarshalled:\n${body}")
                 .bean(new CsvToJson())
-                .log("${body}")
+                .log("Bean mapped to json:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
     }
 }

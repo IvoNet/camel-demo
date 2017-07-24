@@ -17,13 +17,13 @@ import java.util.List;
 @Data
 @XmlRootElement
 public class Order {
-    private List<OrderLine> orderLines;
+    private List<OrderLine> orderLine;
 
     public void add(final OrderLine orderLine) {
-        if (this.orderLines == null) {
-            this.orderLines = new ArrayList<>();
+        if (this.orderLine == null) {
+            this.orderLine = new ArrayList<>();
         }
-        this.orderLines.add(orderLine);
+        this.orderLine.add(orderLine);
     }
 
     public String asJson() {

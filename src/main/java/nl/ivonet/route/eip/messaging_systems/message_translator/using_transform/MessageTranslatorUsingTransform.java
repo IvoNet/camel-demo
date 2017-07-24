@@ -46,10 +46,10 @@ public class MessageTranslatorUsingTransform extends RouteBuilder {
         from(format("file://%s/target/MessageTranslatorUsingBean/?noop=true", projectBaseLocation))
                 .routeId(name)
                 .log("Found file [$simple{header.CamelFileName}] processing csv to json in this route.")
-                .log("${body}")
+                .log("Input message:\n${body}")
                 .transform(method(Order.class, "fromJson"))
                 .marshal().jaxb()
-                .log("${body}")
+                .log("Xml marshalled:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.xml", projectBaseLocation, name));
 
     }

@@ -58,6 +58,9 @@ A scenario something like the one below will play out... it changes as I add new
 
 The whole idea of the above thing is to play around with routes as to get familiar with it.
 
+The scenario above is outdated because lots more has been implemented but it is a good place to start. 
+Just follow the routes further and you will see it all happening...
+
 # docker
 
 The `docker-compose.yml` file in this project has been tuned to work for this camel-demo project.
@@ -148,9 +151,8 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 
 * EIP's 
 * Error handling
-* FileToMqJms
+√ FileToMqJms
 * XPath in path
-* Quartz scheduling (quartz2://report?cron=0+0+6+*+*+? or sumesuch) 
 * MqWithContract
 * PubSub (topic)
     * persisted read/write
@@ -158,7 +160,8 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * Database as monitored (input) source
 * Database as target    
 * Scheduled polling consumer 
-* transformation during route
+* Quartz scheduling (quartz2://report?cron=0+0+6+*+*+? or sumesuch) 
+√ transformation during route
 * add routes to routes
 * UnitTesting of routes
 * usage of direct:...
@@ -170,5 +173,5 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * GZip / Zip file
 * csv
 * XPath
-*
+* Avro format
 
