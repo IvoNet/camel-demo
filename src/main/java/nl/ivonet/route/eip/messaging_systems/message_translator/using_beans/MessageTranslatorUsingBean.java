@@ -1,4 +1,4 @@
-package nl.ivonet.route.eip.messaging_systems.message_translator.using_processor;
+package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
@@ -15,12 +15,12 @@ import static java.lang.String.format;
  */
 @Slf4j
 @Component
-public class MessageTranslatorUsingProcessor extends RouteBuilder {
+public class MessageTranslatorUsingBean extends RouteBuilder {
 
     private final CamelDemoContext context;
 
     @Autowired
-    public MessageTranslatorUsingProcessor(final CamelDemoContext context) {
+    public MessageTranslatorUsingBean(final CamelDemoContext context) {
         this.context = context;
     }
 
@@ -29,11 +29,11 @@ public class MessageTranslatorUsingProcessor extends RouteBuilder {
         final String projectBaseLocation = this.context.projectBaseLocation();
         final String name = this.getClass().getSimpleName();
 
-        from(format("file://%s/test-data/eip/messaging_systems/message_translator/?noop=true", projectBaseLocation))
+        from(format("file://%s/target/MessageTranslatorUsingProcessor/?noop=true", projectBaseLocation))
                 .routeId(name)
-                .log("Found file [$simple{header.CamelFileName}] processing custom format to csv in this route.")
-                .process(new CustomFormatToCSVProcessor())
+                .log("Found file [$simple{header.CamelFileName}] processing csv to json in this route.")
+                .bean(new CsvToJson())
                 .log("${body}")
-                .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.csv", projectBaseLocation, name));
+                .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
     }
 }
