@@ -1,4 +1,4 @@
-package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary;
+package nl.ivonet.route.eip.messaging_systems.message_translator.using_transform;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDateTime;

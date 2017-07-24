@@ -3,6 +3,7 @@ package nl.ivonet.route.eip.messaging_systems.message_translator.using_transform
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
 import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.Order;
+import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.OrderLine;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,10 @@ public class MessageTranslatorUsingTransform extends RouteBuilder {
                 .transform(method(Order.class, "fromJson"))
                 .process(exchange -> {
                     final Order body = (Order) exchange.getIn().getBody();
-                    log.info(body.getOrderLines().get(0).getDateTime().toString());
+                    for (final OrderLine orderLine : body.getOrderLines()) {
+                        log.info("The timestamp is: " + orderLine.getDateTime().toString());
+                    }
                 })
-                .log("${body}")
                 .marshal().jaxb()
                 .log("${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.xml", projectBaseLocation, name));
