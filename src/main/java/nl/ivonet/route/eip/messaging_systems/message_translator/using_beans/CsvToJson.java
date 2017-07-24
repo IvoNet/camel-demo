@@ -1,9 +1,9 @@
 package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.Order;
-import nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary.OrderLine;
-import nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary.Address;
+import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.Order;
+import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.OrderLine;
+import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.Address;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,12 +15,17 @@ import java.util.stream.Stream;
  *
  * I personally do not like this method much as demonstrated by the SuppressWarnings...
  *
+ * This CSV parser is demo worthy only! It is a very dirty implementation :-)
+ *
  * @author Ivo Woltring
  */
 @Slf4j
 @SuppressWarnings({"UtilityClass", "UtilityClassWithoutPrivateConstructor"})
 public final class CsvToJson {
 
+    /**
+     * This is the static method called by the bean.
+     */
     public static String map(final String csv) {
         final String[] lines = csv.split("\\n");
 

@@ -1,8 +1,8 @@
-package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary;
+package nl.ivonet.route.eip.messaging_systems.message_translator.boundary;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * I'm an Order and I have {@link OrderLine}s
+ *
  * @author Ivo Woltring
  */
 @Data
 @XmlRootElement
-@EqualsAndHashCode(callSuper = true)
-public class Order extends JsonObject {
+public class Order {
     private List<OrderLine> orderLines;
 
     public void add(final OrderLine orderLine) {
@@ -23,6 +24,16 @@ public class Order extends JsonObject {
             this.orderLines = new ArrayList<>();
         }
         this.orderLines.add(orderLine);
+    }
+
+    public String asJson() {
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (final JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public static Order fromJson(final String json) {

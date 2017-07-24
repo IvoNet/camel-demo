@@ -1,7 +1,6 @@
-package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.boundary;
+package nl.ivonet.route.eip.messaging_systems.message_translator.boundary;
 
 import lombok.Data;
-import nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary.Address;
 
 import java.time.LocalDateTime;
 

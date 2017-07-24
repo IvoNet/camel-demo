@@ -1,7 +1,7 @@
 package nl.ivonet.route.eip.messaging_systems.message_translator.using_processor;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary.Address;
+import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.Address;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
@@ -10,11 +10,13 @@ import java.time.LocalDateTime;
 /**
  * Processes a custom format to CSV values.
  * The custom formatted file is a completely arbitrarily chosen format for demo purposes.
+ * <p>
+ * This is a very dirty csv implementation, and only for demo purposes!
  *
  * @author Ivo Woltring
  */
 @Slf4j
-public class CustomFormatToCSVProcessor implements Processor {
+public class CustomFormatToCsvProcessor implements Processor {
 
     @Override
     public void process(final Exchange exchange) throws Exception {
@@ -46,7 +48,7 @@ public class CustomFormatToCSVProcessor implements Processor {
 
     private String processDate(final String input) {
         final String dateStr = input.substring(10, 26);
-        return LocalDateTime.of(Integer.valueOf(dateStr.substring(0, 4)), Integer.valueOf(dateStr.substring(4, 6)), Integer.valueOf(dateStr.substring(6, 8)), Integer.valueOf(dateStr.substring(8, 10)), Integer.valueOf(dateStr.substring(11, 12))).toString();
+        return LocalDateTime.of(Integer.valueOf(dateStr.substring(0, 4)), Integer.valueOf(dateStr.substring(4, 6)), Integer.valueOf(dateStr.substring(6, 8)), Integer.valueOf(dateStr.substring(8, 10)), Integer.valueOf(dateStr.substring(11, 12)), Integer.valueOf(dateStr.substring(14, 16))).toString();
     }
 
     private String processOrderId(final String input) {

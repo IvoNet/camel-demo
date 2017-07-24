@@ -1,4 +1,4 @@
-package nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.boundary;
+package nl.ivonet.route.eip.messaging_systems.message_translator.boundary;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
