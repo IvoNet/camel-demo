@@ -1,4 +1,8 @@
 /**
+ * Boundary classes for the MessageTranslator EIP demos.
+ * <p>
+ * The annotations below tell JaxB to use specific Adapters for the Java 8 {@link java.time.LocalDateTime} class.
+ *
  * @author Ivo Woltring
  */
 @XmlJavaTypeAdapters(value = {
