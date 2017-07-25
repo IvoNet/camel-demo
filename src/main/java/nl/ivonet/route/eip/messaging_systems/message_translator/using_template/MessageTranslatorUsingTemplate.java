@@ -2,7 +2,6 @@ package nl.ivonet.route.eip.messaging_systems.message_translator.using_template;
 
 import nl.ivonet.context.CamelDemoContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.lang.String.format;
 
@@ -18,7 +17,7 @@ public class MessageTranslatorUsingTemplate extends RouteBuilder {
 
     private final CamelDemoContext context;
 
-    @Autowired
+    //@Autowired
     public MessageTranslatorUsingTemplate(final CamelDemoContext context) {
         this.context = context;
     }

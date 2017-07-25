@@ -150,9 +150,10 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 # Wishes
 
 * EIP's 
+    √ MessageTranslator
 * Error handling
 √ FileToMqJms
-* XPath in path
+√ XPath in path
 * MqWithContract
 * PubSub (topic)
     * persisted read/write
@@ -174,4 +175,5 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * csv
 * XPath
 * Avro format
+* Custom TypeConverter
 

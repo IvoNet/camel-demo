@@ -25,10 +25,12 @@ import static java.lang.String.format;
 public class MessageTranslatorUsingBean extends RouteBuilder {
 
     private final CamelDemoContext context;
+    private final CsvToJson csvToJson;
 
     @Autowired
-    public MessageTranslatorUsingBean(final CamelDemoContext context) {
+    public MessageTranslatorUsingBean(final CamelDemoContext context, final CsvToJson csvToJson) {
         this.context = context;
+        this.csvToJson = csvToJson;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class MessageTranslatorUsingBean extends RouteBuilder {
                 .log("Input message:\n${body}")
                 .unmarshal().csv()
                 .log("CSV unmarshalled:\n${body}")
-                .bean(new CsvToJson())
+                .bean(this.csvToJson)
                 .log("Bean mapped to json:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
     }

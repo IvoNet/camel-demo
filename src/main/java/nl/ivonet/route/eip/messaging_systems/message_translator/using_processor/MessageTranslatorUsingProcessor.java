@@ -25,10 +25,12 @@ import static java.lang.String.format;
 public class MessageTranslatorUsingProcessor extends RouteBuilder {
 
     private final CamelDemoContext context;
+    private final CustomFormatToCsvProcessor customFormatToCsvProcessor;
 
     @Autowired
-    public MessageTranslatorUsingProcessor(final CamelDemoContext context) {
+    public MessageTranslatorUsingProcessor(final CamelDemoContext context, final CustomFormatToCsvProcessor customFormatToCsvProcessor) {
         this.context = context;
+        this.customFormatToCsvProcessor = customFormatToCsvProcessor;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class MessageTranslatorUsingProcessor extends RouteBuilder {
                 .routeId(name)
                 .log("Found file [$simple{header.CamelFileName}] processing custom format to csv in this route.")
                 .log("Custom formatted file:\n${body}")
-                .process(new CustomFormatToCsvProcessor())
+                .process(this.customFormatToCsvProcessor)
                 .log("Csv formatted:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.csv", projectBaseLocation, name));
     }

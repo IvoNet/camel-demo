@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.Address;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
  * @author Ivo Woltring
  */
 @Slf4j
+@Component
 public class CustomFormatToCsvProcessor implements Processor {
 
     @Override
