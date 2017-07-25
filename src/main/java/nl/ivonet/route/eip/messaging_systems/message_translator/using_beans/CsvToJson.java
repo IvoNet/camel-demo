@@ -12,6 +12,13 @@ import java.util.List;
 /**
  * This bean transforms a specific csv to json.
  *
+ * Because this Bean only has one method you do not have to specify which method is needed for the Translation.
+ * so in the route you can do something like "...bean(new CsvToJson())..." and it will find the one method.
+ *
+ * This not necessarily good practice because it makes maintaining the code more difficult
+ * and something might fail if you add methods at a later date. In general I would advice to always use the method reference
+ * of the bean in the route.
+ *
  * @author Ivo Woltring
  */
 @Slf4j

@@ -45,6 +45,7 @@ public class MessageTranslatorUsingBean extends RouteBuilder {
                 .unmarshal().csv()
                 .log("CSV unmarshalled:\n${body}")
                 .bean(this.csvToJson)
+//                .bean(this.csvToJson, "map") //also correct!
                 .log("Bean mapped to json:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
     }
