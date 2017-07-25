@@ -13,8 +13,10 @@ import static java.lang.String.format;
  *
  * This route demo's the MessageTranslator pattern by using a Bean for the mapper.
  * This route monitors the folder where the {@link nl.ivonet.route.eip.messaging_systems.message_translator.using_processor.MessageTranslatorUsingProcessor}
- * writes its Csv files and will convert the Csv file to Json using the {@link CsvToJson} bean.
- * It will write its json result to the target/MessageTranslatorUsingBean folder.
+ * print its Csv entries to console.
+ * Then it will marshall the csv to a list of lists of strings by using the csv marshaller provided by Camel.
+ * The bean demoed here will convert the marshalled entries to Json using the {@link CsvToJson} bean.
+ * It will write its json result to the target/MessageTranslatorUsingBean folder to view or use in another demo.
  *
  * @author Ivo Woltring
  */

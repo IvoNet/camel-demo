@@ -39,7 +39,7 @@ mvn clean package spring-boot:run
 A scenario something like the one below will play out... it changes as I add new demo's but you'll get the drift:
 
 * a HelloWorld file is located here: `test-data/startingPoint/HelloWorld.txt`
-* this file will be copied by the SimpleFileCopyRoute to the `test-data/SimpleJmsRoute` folder
+* this file will be copied by the FileCopyRoute to the `test-data/SimpleJmsRoute` folder
 * The SimpleJmsRoute_1 listens here and routes the file to ActiveMQ Queue SimpleJmsRoute
 * The SimpleJmsRoute_2 listens here and routes the message to the `test-data/ftp/admin` folder and prints the content of the body to console
 * the FtpToFtpRoute will see this because that is the volume "mounted" by the ftp docker container for the admin user. 
