@@ -17,7 +17,7 @@ import static java.lang.String.format;
  * This route demo's the MessageTranslator pattern by using the .transfom builder method.
  * In this case it will use destination of the {@link nl.ivonet.route.eip.messaging_systems.message_translator.using_beans.MessageTranslatorUsingBean}
  * as the monitor start place (from) and will convert json to xml.
- * First it will transform the json back to it's java object {@link Order} using the provided fromJson method of that class
+ * First it will transform the json back to it's java object {@link Order} using the provided "fromJson" method of that class
  * then it will marshal it to xml using jaxb.
  * it will also log at various levels the body as it is at that time.
  * It will write its resulting xml to the target/MessageTranslatorUsingTransform folder

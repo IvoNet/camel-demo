@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * I'm an Order and I have {@link OrderLine}s
+ * I'm an Order and I have {@link OrderLine}s.
+ *
+ * I'm marshallable to and from Json by the provided methods and to XML by JaxB through the
+ * {@link XmlRootElement} annotation.
  *
  * @author Ivo Woltring
  */
