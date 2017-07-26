@@ -2,6 +2,7 @@ package nl.ivonet.route.eip.messaging_endpoints.service_activator.with_beans;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
+import nl.ivonet.route.eip.message_routing.aggregator.AggregatorRoute;
 import org.apache.camel.Handler;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,10 @@ import static java.lang.String.format;
  * only one method has the {@link Handler} annotation on it so camel will resolve to this one.
  * 4) subscribes to the names topic and activate a bean with a method reference so that method should be used. This one
  * is the most precise and leaves the least space for discussion and ambiguity.
- *
+ * <p>
  * Recommended is the way route 4 does it, but all are viable.
+ *
+ * The header.JMSCorrelationID is set to a constant for the {@link AggregatorRoute} demo. It has no meaning in this demo.
  *
  * @author Ivo Woltring
  */
@@ -51,6 +54,8 @@ public class ServiceActivatorRoutesWithBeanMethodResolving extends RouteBuilder 
               .routeId(name + "_0")
               .convertBodyTo(String.class)
               .split(body().tokenize("\n"))
+              .setHeader("JMSCorrelationID", constant("FortyTwo"))
+              .log("$simple{header.JMSCorrelationID}")
               .to("jms:topic:names");
 
         from("jms:topic:names")

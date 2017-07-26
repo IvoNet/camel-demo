@@ -1,0 +1,27 @@
+package nl.ivonet.route.eip.message_routing.aggregator.boundary;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.processor.aggregate.AggregationStrategy;
+
+/**
+ * @author Ivo Woltring
+ */
+//@Component
+public class MyAggregationStrategy implements AggregationStrategy {
+
+    @Override
+    public Exchange aggregate(final Exchange oldExchange,
+                              final Exchange newExchange) {
+
+        if (oldExchange == null) {
+            return newExchange;
+        }
+
+        final String ret = oldExchange.getIn().getBody(String.class);
+        final String newEx = newExchange.getIn().getBody(String.class);
+
+        oldExchange.getIn().setBody(ret + "\n" + newEx);
+
+        return oldExchange;
+    }
+}
