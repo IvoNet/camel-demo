@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategy;
 import nl.ivonet.route.eip.messaging_endpoints.service_activator.with_beans.ServiceActivatorRoutesWithBeanMethodResolving;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,6 +27,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AggregatorRoute extends RouteBuilder {
 
+    private final MyAggregationStrategy myAggregationStrategy;
+
+    @Autowired
+    public AggregatorRoute(final MyAggregationStrategy myAggregationStrategy) {
+        this.myAggregationStrategy = myAggregationStrategy;
+    }
+
     @Override
     public void configure() throws Exception {
 
@@ -34,7 +42,7 @@ public class AggregatorRoute extends RouteBuilder {
                            .getSimpleName())
               .convertBodyTo(String.class)
               .log("Received: ${body}")
-              .aggregate(header("JMSCorrelationID"), new MyAggregationStrategy())
+              .aggregate(header("JMSCorrelationID"), this.myAggregationStrategy)
               .completionSize(3)
               .completionTimeout(2000)
               .log("Aggregated: ${body}");
