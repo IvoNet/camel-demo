@@ -22,10 +22,10 @@ public class MyAggregationStrategy implements AggregationStrategy {
             return newExchange;
         }
 
-        final String ret = oldExchange.getIn().getBody(String.class);
+        final String oldEx = oldExchange.getIn().getBody(String.class);
         final String newEx = newExchange.getIn().getBody(String.class);
 
-        oldExchange.getIn().setBody(ret + "\n" + newEx);
+        oldExchange.getIn().setBody(oldEx + "\n" + newEx);
 
         return oldExchange;
     }
