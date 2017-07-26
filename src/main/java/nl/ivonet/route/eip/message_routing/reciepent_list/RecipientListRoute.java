@@ -45,7 +45,7 @@ public class RecipientListRoute extends RouteBuilder {
                 .choice()
                 .when(header("CamelFileName").endsWith(".xml"))
                 .log("Found file [$simple{header.CamelFileName}] processing xml files in this route.")
-                .bean(AnnotatedRecipientList.class)
+                .bean("annotatedRecipientList")
                 .recipientList(header("recipients"))
                 .end()
                 .otherwise()

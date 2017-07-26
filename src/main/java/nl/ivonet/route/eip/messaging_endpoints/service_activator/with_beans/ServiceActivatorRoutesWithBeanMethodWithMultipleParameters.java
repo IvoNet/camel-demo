@@ -2,7 +2,6 @@ package nl.ivonet.route.eip.messaging_endpoints.service_activator.with_beans;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.messaging_endpoints.service_activator.with_beans.boundary.BeanMultiParamMethods;
 import org.apache.camel.Handler;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +31,10 @@ import org.springframework.stereotype.Component;
 public class ServiceActivatorRoutesWithBeanMethodWithMultipleParameters extends RouteBuilder {
 
     private final CamelDemoContext context;
-    private final BeanMultiParamMethods beanMultiParamMethods;
 
     @Autowired
-    public ServiceActivatorRoutesWithBeanMethodWithMultipleParameters(final CamelDemoContext context,
-                                                                      final BeanMultiParamMethods beanMultiParamMethods) {
+    public ServiceActivatorRoutesWithBeanMethodWithMultipleParameters(final CamelDemoContext context) {
         this.context = context;
-        this.beanMultiParamMethods = beanMultiParamMethods;
     }
 
     @Override

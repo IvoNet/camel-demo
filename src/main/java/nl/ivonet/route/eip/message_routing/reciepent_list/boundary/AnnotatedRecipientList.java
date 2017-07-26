@@ -3,6 +3,7 @@ package nl.ivonet.route.eip.message_routing.reciepent_list.boundary;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.RecipientList;
 import org.apache.camel.language.XPath;
+import org.springframework.stereotype.Component;
 
 /**
  * I decide where messages are being sent to for the EIP RecipientList demo.
@@ -10,6 +11,7 @@ import org.apache.camel.language.XPath;
  * @author Ivo Woltring
  */
 @Slf4j
+@Component
 public class AnnotatedRecipientList {
 
     /**

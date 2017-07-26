@@ -42,7 +42,7 @@ public class MessageTranslatorUsingProcessor extends RouteBuilder {
                 .routeId(name)
                 .log("Found file [$simple{header.CamelFileName}] processing custom format to csv in this route.")
                 .log("Custom formatted file:\n${body}")
-                .process(this.customFormatToCsvProcessor)
+                .process(this.customFormatToCsvProcessor) //used the DI from Spring to reference this bean
                 .log("Csv formatted:\n${body}")
                 .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.csv", projectBaseLocation, name));
     }
