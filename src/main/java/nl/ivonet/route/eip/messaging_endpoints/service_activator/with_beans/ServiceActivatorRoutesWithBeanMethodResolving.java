@@ -33,7 +33,7 @@ import static java.lang.String.format;
 @Slf4j
 @Component
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class ServiceActivatorRoutesWithBeanResolving extends RouteBuilder {
+public class ServiceActivatorRoutesWithBeanMethodResolving extends RouteBuilder {
 
     private final CamelDemoContext context;
     private final SingleMethodBean singleMethodBean;
@@ -41,10 +41,10 @@ public class ServiceActivatorRoutesWithBeanResolving extends RouteBuilder {
     private final MultiAmbiguousMethodsWithHandlerAnnotation multiAmbiguousMethodsWithHandlerAnnotation;
 
     @Autowired
-    public ServiceActivatorRoutesWithBeanResolving(final CamelDemoContext context,
-                                                   final SingleMethodBean singleMethodBean,
-                                                   final MultiMethodBeanWithClearTypes multiMethodBeanWithClearTypes,
-                                                   final MultiAmbiguousMethodsWithHandlerAnnotation multiAmbiguousMethodsWithHandlerAnnotation) {
+    public ServiceActivatorRoutesWithBeanMethodResolving(final CamelDemoContext context,
+                                                         final SingleMethodBean singleMethodBean,
+                                                         final MultiMethodBeanWithClearTypes multiMethodBeanWithClearTypes,
+                                                         final MultiAmbiguousMethodsWithHandlerAnnotation multiAmbiguousMethodsWithHandlerAnnotation) {
         this.context = context;
         this.singleMethodBean = singleMethodBean;
         this.multiMethodBeanWithClearTypes = multiMethodBeanWithClearTypes;

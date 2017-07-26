@@ -4,8 +4,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Used in a route with a ".bean" without a method reference.
- * The resolving of which method to use goes fine because the body is a string and therefore there is but
- * one method to handle that kind of input.
+ * The resolving of which method to use is done by finding the method with the correct parameter type.
  *
  * @author Ivo Woltring
  */
