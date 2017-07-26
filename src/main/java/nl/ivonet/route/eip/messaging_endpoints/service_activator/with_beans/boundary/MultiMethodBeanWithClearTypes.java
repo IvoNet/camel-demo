@@ -2,8 +2,6 @@ package nl.ivonet.route.eip.messaging_endpoints.service_activator.with_beans.bou
 
 import org.springframework.stereotype.Component;
 
-import java.io.InputStream;
-
 /**
  * Used in a route with a ".bean" without a method reference.
  * The resolving of which method to use goes fine because the body is a string and therefore there is but
@@ -14,17 +12,17 @@ import java.io.InputStream;
 @Component
 public class MultiMethodBeanWithClearTypes {
 
+    /**
+     * Chosen by route ServiceActivatorRoutesWithBeanResolving_1 because body is a string.
+     */
     public String sayHello(final String name) {
         return "hello " + name;
     }
 
     /**
-     * This method should never be called in the ServiceActivatorRoutesWithBeanResolving_2 route.
-     * This is because the other method has a string as a parameter and the body is a string.
+     * Chosen by route ServiceActivatorRoutesWithBeanResolving_5 because body is a byte[].
      */
-    @SuppressWarnings("unused")
-    public String sayHello(final InputStream name) {
-        return "WRONG! " + name;
+    public String sayHello(final byte[] chars) {
+        return "hello route 5: " + new String(chars);
     }
-
 }

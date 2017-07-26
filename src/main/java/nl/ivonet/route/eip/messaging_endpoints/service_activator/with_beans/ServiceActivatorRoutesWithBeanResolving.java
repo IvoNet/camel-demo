@@ -85,5 +85,12 @@ public class ServiceActivatorRoutesWithBeanResolving extends RouteBuilder {
               .bean("multiAmbiguousMethodsWithHandlerAnnotation", "sayHello5")
               .log("${body}");
 
+        from("jms:topic:names")
+              .routeId(name + "_5")
+              .convertBodyTo(byte[].class)
+              .bean("multiMethodBeanWithClearTypes")
+              .log("${body}");
+
+
     }
 }

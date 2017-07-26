@@ -35,7 +35,7 @@ public class MultiAmbiguousMethodsWithHandlerAnnotation {
     }
 
     public String sayHello5(final String name) {
-        return "Hello route 4 only:" + name;
+        return "Hello route 4 only: " + name;
     }
 
 }
