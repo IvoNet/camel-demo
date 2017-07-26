@@ -2,8 +2,10 @@ package nl.ivonet.route.eip.messaging_systems.message_translator.using_transform
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
+import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.JsonPathBean;
 import nl.ivonet.route.eip.messaging_systems.message_translator.boundary.Order;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.jsonpath.JsonPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,8 @@ import static java.lang.String.format;
  * then it will marshal it to xml using jaxb.
  * it will also log at various levels the body as it is at that time.
  * It will write its resulting xml to the target/MessageTranslatorUsingTransform folder
+ *
+ * The .bean ({@link JsonPathBean}) call in the route is only there to demonstrate the usage of a {@link JsonPath} in the bean.
  *
  * Important note in this is that, because java 8 is used, an adapter was needed for the {@link LocalDateTime}
  * The definition of this adapter is found in the package-info.java file. See also the {@link LocalDateTimeAdapter} class.
