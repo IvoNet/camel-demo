@@ -2,7 +2,9 @@ package nl.ivonet.route.eip.message_routing.aggregator;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategy;
+import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategyPojo;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.util.toolbox.AggregationStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
  * correlation ids between 1 and 4.
  * 2) In this demo we aggregate multiple messages from the jms:topic:names_with_generated_correlation_ids to one message again based on the
  * JMSCorrelationID in the header as generated in the first route.
+ * 3) does the same as route 2 but then with a POJO as the aggregator strategy.
  * <p>
  * the {@link MyAggregationStrategy} is used to aggregate the messages to one message.
  * A new message is finished when we have a size of 3 aggregated messages or if the timeout has expired.
@@ -29,10 +32,13 @@ import org.springframework.stereotype.Component;
 public class AggregatorRoute extends RouteBuilder {
 
     private final MyAggregationStrategy myAggregationStrategy;
+    private final MyAggregationStrategyPojo myAggregationStrategyPojo;
 
     @Autowired
-    public AggregatorRoute(final MyAggregationStrategy myAggregationStrategy) {
+    public AggregatorRoute(final MyAggregationStrategy myAggregationStrategy,
+                           final MyAggregationStrategyPojo myAggregationStrategyPojo) {
         this.myAggregationStrategy = myAggregationStrategy;
+        this.myAggregationStrategyPojo = myAggregationStrategyPojo;
     }
 
     @Override
@@ -48,13 +54,21 @@ public class AggregatorRoute extends RouteBuilder {
 
         from("jms:topic:names_with_generated_correlation_ids")
               .routeId(name+"_2")
-              .convertBodyTo(String.class)
               .log("Received: ${body}")
               .log("CorrelationId: ${header[JMSCorrelationID]}")
               .aggregate(header("JMSCorrelationID"), this.myAggregationStrategy)
               .completionSize(3)
               .completionTimeout(2000)
-              .log("Aggregated: ${body}");
+              .log("Aggregated in route 2 with id ${header[JMSCorrelationID]}: ${body}");
+
+        from("jms:topic:names_with_generated_correlation_ids")
+              .routeId(name+"_3")
+              .log("Received: ${body}")
+              .log("CorrelationId: ${header[JMSCorrelationID]}")
+              .aggregate(header("JMSCorrelationID"), AggregationStrategies.bean(this.myAggregationStrategyPojo))
+              .completionSize(3)
+              .completionTimeout(2000)
+              .log("Aggregated in route 3 with id ${header[JMSCorrelationID]}: ${body}");
 
     }
 }
