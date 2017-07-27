@@ -18,7 +18,7 @@ public class MyAggregationStrategy implements AggregationStrategy {
     public Exchange aggregate(final Exchange oldExchange,
                               final Exchange newExchange) {
 
-        if (oldExchange == null) {
+        if (isFirstRecord(oldExchange)) {
             return newExchange;
         }
 
@@ -28,5 +28,9 @@ public class MyAggregationStrategy implements AggregationStrategy {
         oldExchange.getIn().setBody(oldEx + "\n" + newEx);
 
         return oldExchange;
+    }
+
+    private boolean isFirstRecord(final Exchange exchange) {
+        return exchange == null;
     }
 }
