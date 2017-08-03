@@ -13,6 +13,13 @@ public class Config {
 
     @Bean
     public AggregationRepository aggregationRepository() {
-        return new LevelDBAggregationRepository("aggregator", "target/aggregator.db");
+        final LevelDBAggregationRepository levelDB = new LevelDBAggregationRepository("aggregator",
+                                                                                      "target/aggregator.db");
+        levelDB.setUseRecovery(true);
+        levelDB.setMaximumRedeliveries(5);
+        levelDB.setDeadLetterUri("jms:queue:dead-letter");
+        levelDB.setRecoveryInterval(3000);
+
+        return levelDB;
     }
 }
