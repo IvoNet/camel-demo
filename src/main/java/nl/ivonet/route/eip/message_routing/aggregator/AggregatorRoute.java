@@ -1,9 +1,12 @@
 package nl.ivonet.route.eip.message_routing.aggregator;
 
 import lombok.extern.slf4j.Slf4j;
+import nl.ivonet.context.Config;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategy;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategyPojo;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.leveldb.LevelDBAggregationRepository;
+import org.apache.camel.spi.AggregationRepository;
 import org.apache.camel.util.toolbox.AggregationStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +27,9 @@ import org.springframework.stereotype.Component;
  * end on the timeout. Less then 3 names will then be in the message.
  * <p>
  * Every time a completed aggregation has occurred it will be logged to console.
+ * <p>
+ * The aggregator has been made persistent by using a {@link AggregationRepository} and in this case a {@link LevelDBAggregationRepository} defined in {@link Config}
+ * and injected as a Bean. If you remove that line it will be an in memory aggregation.
  *
  * @author Ivo Woltring
  */
@@ -33,12 +39,15 @@ public class AggregatorRoute extends RouteBuilder {
 
     private final MyAggregationStrategy myAggregationStrategy;
     private final MyAggregationStrategyPojo myAggregationStrategyPojo;
+    private final AggregationRepository aggregationRepository;
 
     @Autowired
     public AggregatorRoute(final MyAggregationStrategy myAggregationStrategy,
-                           final MyAggregationStrategyPojo myAggregationStrategyPojo) {
+                           final MyAggregationStrategyPojo myAggregationStrategyPojo,
+                           final AggregationRepository aggregationRepository) {
         this.myAggregationStrategy = myAggregationStrategy;
         this.myAggregationStrategyPojo = myAggregationStrategyPojo;
+        this.aggregationRepository = aggregationRepository;
     }
 
     @Override
@@ -53,21 +62,23 @@ public class AggregatorRoute extends RouteBuilder {
               .to("jms:topic:names_with_generated_correlation_ids");
 
         from("jms:topic:names_with_generated_correlation_ids")
-              .routeId(name+"_2")
+              .routeId(name + "_2")
               .log("Received: ${body}")
               .log("CorrelationId: ${header[JMSCorrelationID]}")
               .aggregate(header("JMSCorrelationID"), this.myAggregationStrategy)
               .completionSize(3)
               .completionTimeout(2000)
+              .aggregationRepository(this.aggregationRepository)
               .log("Aggregated in route 2 with id ${header[JMSCorrelationID]}: ${body}");
 
         from("jms:topic:names_with_generated_correlation_ids")
-              .routeId(name+"_3")
+              .routeId(name + "_3")
               .log("Received: ${body}")
               .log("CorrelationId: ${header[JMSCorrelationID]}")
               .aggregate(header("JMSCorrelationID"), AggregationStrategies.bean(this.myAggregationStrategyPojo))
               .completionSize(3)
               .completionTimeout(2000)
+              .aggregationRepository(this.aggregationRepository)
               .log("Aggregated in route 3 with id ${header[JMSCorrelationID]}: ${body}");
 
     }
