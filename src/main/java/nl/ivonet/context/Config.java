@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
+ * Configs have a place here.
+ *
  * @author Ivo Woltring
  */
 @Component
