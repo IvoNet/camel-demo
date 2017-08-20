@@ -5,6 +5,20 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 /**
+ * Most of the routing patterns presented in this section route incoming
+ * messages to one or more destinations based on a set of rules.
+ * Sometimes, though, we need to route a message not just to a single
+ * component, but through a whole series of components. Let's assume, for example,
+ * that we use a Pipes and Filters architecture to process incoming messages that
+ * have to undergo a sequence of processing steps and business rule validations.
+ * Since the nature of the validations varies widely and may depend on external
+ * systems (e.g., credit card validations), we implement each type of step as
+ * a separate filter. Each filter inspects the incoming message, and applies
+ * the business rule(s) to the message. If the message does not fulfill
+ * the conditions specified by the rules it is routed to an exception channel.
+ * The channels between the filters determine the sequence of validations that
+ * the message needs to undergo.
+ *
  * @author Ivo Woltring
  */
 @Component
