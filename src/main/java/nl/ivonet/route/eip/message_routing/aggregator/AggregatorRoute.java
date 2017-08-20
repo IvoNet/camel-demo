@@ -13,21 +13,24 @@ import org.springframework.stereotype.Component;
 
 /**
  * An Aggregator EIP demo.
- * <p>
+ * <p/>
  * Routes:
+ * <p/>
  * 1) In this demo we first get all the names from the names topic and send them to an new topic (names_with_generated_correlation_ids) with randomly generated
  * correlation ids between 1 and 4.
+ * <p/>
  * 2) In this demo we aggregate multiple messages from the jms:topic:names_with_generated_correlation_ids to one message again based on the
  * JMSCorrelationID in the header as generated in the first route.
+ * <p/>
  * 3) does the same as route 2 but then with a POJO as the aggregator strategy.
- * <p>
+ * <p/>
  * the {@link MyAggregationStrategy} is used to aggregate the messages to one message.
  * A new message is finished when we have a size of 3 aggregated messages or if the timeout has expired.
  * In the end one to four correlationIds may not have sufficient names to complete on the completionSize and will then
  * end on the timeout. Less then 3 names will then be in the message.
- * <p>
+ * <p/>
  * Every time a completed aggregation has occurred it will be logged to console.
- * <p>
+ * <p/>
  * The aggregator has been made persistent by using a {@link AggregationRepository} and in this case a {@link LevelDBAggregationRepository} defined in {@link Config}
  * and injected as a Bean. If you remove that line it will be an in memory aggregation.
  *
