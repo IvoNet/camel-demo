@@ -28,12 +28,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
-public class ServiceActivatorRoutesWithBeanMethodWithMultipleParameters extends RouteBuilder {
+public class ServiceActivatorRoutesWithBeanMethodWithMultipleParams extends RouteBuilder {
 
     private final CamelDemoContext context;
 
     @Autowired
-    public ServiceActivatorRoutesWithBeanMethodWithMultipleParameters(final CamelDemoContext context) {
+    public ServiceActivatorRoutesWithBeanMethodWithMultipleParams(final CamelDemoContext context) {
         this.context = context;
     }
 
