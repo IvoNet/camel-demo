@@ -1,8 +1,8 @@
-package nl.ivonet.route.eip.message_routing.reciepent_list;
+package nl.ivonet.route.eip.message_routing.recipient_list;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.ivonet.context.CamelDemoContext;
-import nl.ivonet.route.eip.message_routing.reciepent_list.boundary.AnnotatedRecipientList;
+import nl.ivonet.route.eip.message_routing.recipient_list.boundary.AnnotatedRecipientList;
 import nl.ivonet.route.file.FileCopyRoute;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
