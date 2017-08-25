@@ -5,7 +5,8 @@ import nl.ivonet.route.eip.message_routing.routing_slip.RoutingSlipRoute;
 import org.springframework.stereotype.Component;
 
 /**
- * The single method in this class is used to decide where the next message should be send to in the {@link RoutingSlipRoute} class.
+ * The single method in this class is used to decide where the next message
+ * should be send to in the {@link RoutingSlipRoute} class.
  *
  * @author Ivo Woltring
  */
