@@ -146,6 +146,21 @@ To make looking at the results of what happens to to de db `phpmyadmin` has also
 * read more about this image [here](https://hub.docker.com/r/ivonet/mysql/)
 * this images looks in `docker/mysql/setup` for initializing sql scripts when the first `docker-compose up` is done
 
+# Copyright
+
+Copyright 2017 Ivo Woltring <WebMaster@ivonet.nl>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 # Wishes
 
