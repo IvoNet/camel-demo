@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 Ivo Woltring <WebMaster@ivonet.nl>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package nl.ivonet.route.eip.messaging_systems.message_translator.using_beans;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,15 +53,16 @@ public class MessageTranslatorUsingBean extends RouteBuilder {
         final String name = this.getClass().getSimpleName();
 
         from(format("file://%s/target/MessageTranslatorUsingProcessor/?noop=true", projectBaseLocation))
-                .routeId(name)
-                .log("Found file [$simple{header.CamelFileName}] processing csv to json in this route.")
-                .log("Input message:\n${body}")
-                .unmarshal().csv()
-                .log("CSV unmarshalled:\n${body}")
-                .bean("csvToJson")
+              .routeId(name)
+              .log("Found file [$simple{header.CamelFileName}] processing csv to json in this route.")
+              .log("Input message:\n${body}")
+              .unmarshal()
+              .csv()
+              .log("CSV unmarshalled:\n${body}")
+              .bean("csvToJson")
 //                .bean("csvToJson", "map") //also correct
 //                .to("bean:csvToJson?method=map") //also correct
-                .log("Bean mapped to json:\n${body}")
-                .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
+              .log("Bean mapped to json:\n${body}")
+              .to(format("file://%s/target/%s?fileName=${header.CamelFileName}.json", projectBaseLocation, name));
     }
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 Ivo Woltring <WebMaster@ivonet.nl>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package nl.ivonet.route.ftp;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +37,9 @@ public class FtpToFtpRoute extends RouteBuilder {
     public void configure() throws Exception {
         final String name = this.getClass().getSimpleName();
         from("ftp://{{ftp.admin.name}}:{{ftp.admin.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true&move=.camel")
-                .routeId(name)
-                .log("Found file [$simple{header.CamelFileName}] and cp-ing it to the ftp user: user")
-                .to("ftp://{{ftp.user.name}}:{{ftp.user.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true");
+              .routeId(name)
+              .log("Found file [$simple{header.CamelFileName}] and cp-ing it to the ftp user: user")
+              .to("ftp://{{ftp.user.name}}:{{ftp.user.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true");
 
     }
 }
