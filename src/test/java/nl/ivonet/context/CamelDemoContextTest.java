@@ -37,7 +37,6 @@ public class CamelDemoContextTest {
     @Test
     public void projectBaseLocation() throws Exception {
         assertTrue(this.camelDemoContext.projectBaseLocation().endsWith("camel-demo"));
-        System.out.println("camelDemoContext.projectBaseLocation() = " + this.camelDemoContext.projectBaseLocation());
     }
 
 }
