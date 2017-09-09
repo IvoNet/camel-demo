@@ -25,19 +25,7 @@
     <packaging>jar</packaging>
 
     <name>camel-demo</name>
-    <description>
-        This project holds all kinds of Camel demo routes
-
-        All things should work :-) if you can follow instructions ...
-
-        The reason I chose spring-boot as the glue to make it all work is that spring
-        makes it very easy to integrate all components needed and because of that I can
-        start playing with routes almost immediately
-
-        This project works best when run in combination with docker. I've included a `docker-compose.yml`
-        file providing all needed 'middleware'. This enables actually testing the ftp protocol or jms, mq and stuff.
-        You can read more about that in the docker section.
-    </description>
+    <description>This project holds all kinds of Camel demo routes</description>
     <url>https://ivonet.github.io/camel-demo/</url>
 
     <developers>
@@ -52,13 +40,6 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:https://github.com/IvoNet/camel-demo.git</connection>
-        <developerConnection>scm:git:https://github.com/IvoNet/camel-demo.git</developerConnection>
-        <url>https://github.com/IvoNet/camel-demo</url>
-    </scm>
-
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -69,14 +50,22 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <github.global.server>github</github.global.server>
         <java.version>1.8</java.version>
         <camel.version>2.18.3</camel.version>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/IvoNet/camel-demo.git</connection>
+        <developerConnection>scm:git:https://github.com/IvoNet/camel-demo.git</developerConnection>
+        <url>https://github.com/IvoNet/camel-demo</url>
+    </scm>
+
+
     <distributionManagement>
         <site>
-            <id>ivonet.github.io/camel-demo</id>
-            <url>scp:///Users/ivonet/dev/ivonet-camel/gh-pages</url>
+            <id>github</id>
+            <url>scm:git:https://github.com/IvoNet/camel-demo.git</url>
         </site>
     </distributionManagement>
 
@@ -235,9 +224,6 @@
                         <version>1.7</version>
                     </dependency>
                 </dependencies>
-                <!--<configuration>-->
-                <!--<outputDirectory>${project.basedir}/../pg-pages/</outputDirectory>-->
-                <!--</configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -246,6 +232,24 @@
                 <configuration>
                     <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Creating site for ${project.version}</message>
+                    <server>github</server>
+                    <merge>true</merge>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site-deploy</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
