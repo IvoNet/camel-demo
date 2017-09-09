@@ -28,12 +28,13 @@
         <menu name="Overview">
             <item name="Introduction" href="index.html"/>
             <item name="Usage" href="usage.html"/>
+            <item name="Build" href="build.html"/>
             <item name="Wishes" href="wishes.html"/>
             <item name="Source" href="http://ivo2u.nl/5o"/>
         </menu>
 
         <links>
-            <item name="IvoNet.nl" href="http://ivo2u.nl/d"/>
+            <item name="IvoNet.nl" href="https://www.ivonet.nl"/>
         </links>
 
         <menu ref="reports" inherit="top"/>
