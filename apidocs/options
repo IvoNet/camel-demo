@@ -16,10 +16,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'camel-demo 0.0.1-SNAPSHOT API'
+'camel-demo 1.0.0-SNAPSHOT API'
 -linkoffline
 'http://docs.oracle.com/javase/8/docs/api' '/Users/ivonet/dev/ivonet-camel/camel-demo/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'camel-demo 0.0.1-SNAPSHOT API'
+'camel-demo 1.0.0-SNAPSHOT API'

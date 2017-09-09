@@ -24,3 +24,4 @@ nl.ivonet.route.file
 nl.ivonet.route.file.boundary
 nl.ivonet.route.ftp
 nl.ivonet.route.jms
+nl.ivonet.route.load_balancer

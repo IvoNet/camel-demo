@@ -16,7 +16,7 @@
 -docencoding
 'UTF-8'
 -doctitle
-'camel-demo 0.0.1-SNAPSHOT Test API'
+'camel-demo 1.0.0-SNAPSHOT Test API'
 -link
 '../apidocs'
 -linkoffline
@@ -24,4 +24,4 @@
 -use
 -version
 -windowtitle
-'camel-demo 0.0.1-SNAPSHOT Test API'
+'camel-demo 1.0.0-SNAPSHOT Test API'

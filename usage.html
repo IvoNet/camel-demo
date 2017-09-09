@@ -25,9 +25,9 @@
     <div id="breadcrumbs">
           
                 <div class="xleft">
-        <span id="projectVersion">Version: 0.0.1-SNAPSHOT</span>
+        <span id="projectVersion">Version: 1.0.0-SNAPSHOT</span>
               </div>
-            <div class="xright">                    <a href="http://ivo2u.nl/d" class="externalLink" title="IvoNet.nl">IvoNet.nl</a>
+            <div class="xright">                    <a href="https://www.ivonet.nl" class="externalLink" title="IvoNet.nl">IvoNet.nl</a>
             
                 &nbsp;| <span id="publishDate">Last Published: 2017-09-09</span>
             </div>
@@ -46,6 +46,9 @@
                   <li class="none">
             <strong>Usage</strong>
           </li>
+                  <li class="none">
+                          <a href="build.html" title="Build">Build</a>
+            </li>
                   <li class="none">
                           <a href="wishes.html" title="Wishes">Wishes</a>
             </li>
@@ -151,7 +154,7 @@ mvn clean package spring-boot:run
 <div class="source">
 <pre>docker-compose down [-v]
 </pre></div></div>
-<p>the -v option will also remove the docker volumes created.</p>
+<p>the -v option will also remove the docker volumes created. You can do this any time you want. It might even be preferable in this project as you can then see everything happening from the beginning state.</p>
 <h1>FTP docker image</h1>
 <p>In order to demo the ftp routes in this project an ftp server has been configured in the docker-compose file. This ftp server mounts &#x2018;native local&#x2019; folders in the <tt>test-data/ftp</tt> folder but it will also actually enable the ftp protocol. So the FtpTo*Routes really talk ftp in the demo.</p>
 <p>You will be able to see what happens on your native file system though. Please look at the ftp config in the docker-compose file to see how that works.</p></div>
@@ -185,7 +188,10 @@ mvn clean package spring-boot:run
 <div class="source">
 <div class="source">
 <pre>docker exec -it ftp /bin/bash
-pure-pw useradd USERHERE -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/USERHERE
+pure-pw useradd USERHERE \
+   -f /etc/pure-ftpd/passwd/pureftpd.passwd \
+   -m -u ftpuser \
+   -d /home/ftpusers/USERHERE
 </pre></div></div>
 <p>Exit the image with logout and stop the image with ctrl-c or</p>
 
