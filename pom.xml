@@ -25,7 +25,32 @@
     <packaging>jar</packaging>
 
     <name>camel-demo</name>
-    <description>Camel demo based on Camel In Action 2</description>
+    <description>
+        This project holds all kinds of Camel demo routes
+
+        All things should work :-) if you can follow instructions ...
+
+        The reason I chose spring-boot as the glue to make it all work is that spring
+        makes it very easy to integrate all components needed and because of that I can
+        start playing with routes almost immediately
+
+        This project works best when run in combination with docker. I've included a `docker-compose.yml`
+        file providing all needed 'middleware'. This enables actually testing the ftp protocol or jms, mq and stuff.
+        You can read more about that in the docker section.
+    </description>
+    <url>https://ivonet.github.io/camel-demo/</url>
+
+    <developers>
+        <developer>
+            <id>ivonet</id>
+            <name>Ivo Woltring</name>
+            <url>http://ivonet.nl</url>
+            <roles>
+                <role>developer</role>
+                <role>architect</role>
+            </roles>
+        </developer>
+    </developers>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -41,7 +66,13 @@
         <camel.version>2.18.3</camel.version>
     </properties>
 
-    <!-- import Spring-Boot and Camel BOM -->
+    <distributionManagement>
+        <site>
+            <id>ivonet.github.io/camel-demo</id>
+            <url>scp:///Users/ivonet/dev/ivonet-camel/gh-pages</url>
+        </site>
+    </distributionManagement>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -85,8 +116,8 @@
             <artifactId>camel-jsonpath</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.apache.camel</groupId>
-          <artifactId>camel-leveldb</artifactId>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-leveldb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>

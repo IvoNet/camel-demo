@@ -180,14 +180,14 @@ limitations under the License.
 √ transformation during route
 * add routes to routes
 * UnitTesting of routes
-* usage of direct:...
+√ usage of direct:...
 * usage of mock
 * Type conversions
 * Processors with exchange type manipulation
 * Jaxb2 marshalling / unmarshalling
 * Json 
 * GZip / Zip file
-* csv
+√ csv
 * XPath
 * Avro format
 * Custom TypeConverter

@@ -17,7 +17,7 @@
 package nl.ivonet.route.eip.message_routing.aggregator;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.ivonet.context.Config;
+import nl.ivonet.config.RepositoryConfig;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategy;
 import nl.ivonet.route.eip.message_routing.aggregator.boundary.MyAggregationStrategyPojo;
 import org.apache.camel.builder.RouteBuilder;
@@ -47,7 +47,7 @@ import org.springframework.stereotype.Component;
  * <p/>
  * Every time a completed aggregation has occurred it will be logged to console.
  * <p/>
- * The aggregator has been made persistent by using a {@link AggregationRepository} and in this case a {@link LevelDBAggregationRepository} defined in {@link Config}
+ * The aggregator has been made persistent by using a {@link AggregationRepository} and in this case a {@link LevelDBAggregationRepository} defined in {@link RepositoryConfig}
  * and injected as a Bean. If you remove that line it will be an in memory aggregation.
  *
  * @author Ivo Woltring
