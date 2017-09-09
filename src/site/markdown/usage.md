@@ -70,7 +70,8 @@ Stop:
 docker-compose down [-v]
 ```
 
-the -v option will also remove the docker volumes created.
+the -v option will also remove the docker volumes created. You can do this any time you want. It might even be preferable in this
+project as you can then see everything happening from the beginning state.
 
 
 # FTP docker image
@@ -110,7 +111,10 @@ Then you need to enter the running image:
 
 ```bash
 docker exec -it ftp /bin/bash
-pure-pw useradd USERHERE -f /etc/pure-ftpd/passwd/pureftpd.passwd -m -u ftpuser -d /home/ftpusers/USERHERE
+pure-pw useradd USERHERE \
+   -f /etc/pure-ftpd/passwd/pureftpd.passwd \
+   -m -u ftpuser \
+   -d /home/ftpusers/USERHERE
 ```
 
 Exit the image with logout and stop the image with ctrl-c or
