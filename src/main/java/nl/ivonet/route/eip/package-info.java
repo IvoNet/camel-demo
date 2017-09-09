@@ -15,7 +15,6 @@
  */
 
 /**
- * es
  * Enterprise Integration Pattern demo's are placed int their respective bundling packages.
  *
  * @author Ivo Woltring

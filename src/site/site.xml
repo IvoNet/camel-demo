@@ -33,6 +33,7 @@
         <menu name="Overview">
             <item name="Introduction" href="index.html"/>
             <item name="Usage" href="usage.html"/>
+            <item name="Wishes" href="wishes.md"/>
             <item name="Source" href="https://github.com/IvoNet/camel-demo"/>
             <item name="License" href="license.html"/>
             <item name="Info" href="project-info.html"/>

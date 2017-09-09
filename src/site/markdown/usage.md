@@ -1,5 +1,14 @@
 # Usage
 
+## Prerequisites
+
+* docker (native) installed
+* docker-compose installed
+* java 8 installed
+* maven 3+ installed
+* a sense of adventure :-)
+* a good OS like linux or macOs :-)
+
 ## Running the demos
 
 In order to be able to run the demo you first need to start
