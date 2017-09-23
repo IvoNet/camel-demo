@@ -15,15 +15,11 @@
  */
 
 /**
- * All demo routes get a place here.
+ * This package handles the <a href="http://www.enterpriseintegrationpatterns.com/patterns/conversation/LoadBalancer.html">Load Balancer</a> EIP.
  * <p>
- * <ul>
- * <li>eip  - all Enterprise Integration Patter routes are placed here</li>
- * <li>file - file manipulation route demos</li>
- * <li>ftp  - ftp demos</li>
- * <li>jms  - Java Messaging Service related demo's</li>
- * </ul>
+ * The reason this demo is not in the eip package is that it is not officially part of the integration patters as described in "the book".
+ * but should be ;-)
  *
  * @author Ivo Woltring
  */
-package nl.ivonet.route;
+package nl.ivonet.route.load_balancer;

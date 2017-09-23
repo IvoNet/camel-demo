@@ -73,5 +73,6 @@ public class SimpleJmsRoute extends RouteBuilder {
                   log.info(body);
               })
               .to(String.format("file://%s/test-data/ftp/admin/", this.projectBaseLocation));
+//              .to("ftp://{{ftp.admin.name}}:{{ftp.admin.password}}@{{ftp.host}}:{{ftp.port}}?passiveMode=true");
     }
 }
