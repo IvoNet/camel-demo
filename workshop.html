@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Camel Demo &#x2013; Sitemap</title>
+    <title>Camel Demo &#x2013; Workshop</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -55,8 +55,8 @@
                           <a href="build.html" title="Build">Build</a>
             </li>
                   <li class="none">
-                          <a href="workshop.html" title="Workshop">Workshop</a>
-            </li>
+            <strong>Workshop</strong>
+          </li>
                   <li class="none">
                           <a href="./" title="Source">Source</a>
             </li>
@@ -78,51 +78,115 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section">
-<h2><a name="Sitemap"></a>Sitemap</h2>
-
-<p>This page lists all entries of the navigation menu in expanded form.</p>
-
+        <h1>Workshop</h1>
 <div class="section">
+<h2><a name="Introduction"></a>Introduction</h2>
+<p>This workshop has a couple of goals:</p>
+
+<ul>
+  
+<li>Why would or should you want to use Enterprise Integration Patterns (EIP)</li>
+  
+<li>Familiarize yourself with the ease of integration with Camel</li>
+  
+<li>Have some exercise with the framework</li>
+  
+<li>Get the plumbing code to get started for free :-)</li>
+</ul></div>
 <div class="section">
-<h4><a name="Overview"></a>Overview</h4><hr />
-
-<ul>
-
-<li><a href="index.html">Introduction</a></li>
-
-<li><a href="install.html">install</a></li>
-
-<li><a href="usage.html">Usage</a></li>
-
-<li><a href="build.html">Build</a></li>
-
-<li><a href="workshop.html">Workshop</a></li>
-
-<li><a href="./">Source</a></li></ul>
-</div>
+<h2><a name="How"></a>How</h2>
+<p>This site will walk you through a couple of routes to get familiarize yourself with the Camel framework. The exercises will be explained below and what is expected. The exercises will start out easy and will progressively get more difficult. We will go into the Enterprise Integration Patterns and will also implement some of them.</p>
+<p>Hope you like the experience and love the ease with which you can now integrate different technologies and protocols.</p></div>
 <div class="section">
-<h4><a name="Project_Documentation"></a>Project Documentation</h4><hr />
+<h2><a name="Hump_on"></a>Hump on&#x2026;</h2>
+<div class="section">
+<h3><a name="File_routing"></a>File routing</h3>
+<p>One of the things often done in any language is to copy files from one location to another.</p>
+<p>In pure java code this will look something like this:</p>
+
+<div class="source">
+<div class="source">
+<pre>import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+* Copy all the files in a folder with specific extension to another folder. 
+* Both the folders are specified on the command line. 
+* The program currently uses .java extension as filter.
+**/
+public class CopyFilesWithExtension {
+	
+	public static void main(String[] args) {
+		if(args.length!=2) {
+			System.out.println(&quot;Command usage: java CopyFilesWithExtension sourcedirectory targetdirectory&quot;);
+		}
+		
+		String sourceFolder = args[0];
+		String targetFolder = args[1];
+		
+		File sFile = new File(sourceFolder);
+		// Find files with specified extension
+		File[] sourceFiles = sFile.listFiles(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				if(name.endsWith(&quot;.java&quot;)) {// change this to your extension
+					return true;
+				}else {
+					return false;
+				}
+			}
+		});
+		
+		// let us copy each file to the target folder
+		for(File fSource:sourceFiles) {
+			File fTarget = new File(new File(targetFolder), fSource.getName());
+			copyFileUsingStream(fSource,fTarget);
+			// fSource.delete(); // Uncomment this line if you want source file deleted
+		}
+		
+		
+	}
+	
+	/**
+	 * Copies a file using the File streams
+	 * @param source
+	 * @param dest
+	 */
+	private static void copyFileUsingStream(File source, File dest)  {
+	    InputStream is = null;
+	    OutputStream os = null;
+	    try {
+	        is = new FileInputStream(source);
+	        os = new FileOutputStream(dest);
+	        byte[] buffer = new byte[1024];
+	        int length;
+	        while ((length = is.read(buffer)) &gt; 0) {
+	            os.write(buffer, 0, length);
+	        }
+	    }catch(Exception ex) {
+	    	System.out.println(&quot;Unable to copy file:&quot;+ex.getMessage());
+	    }	
+	    finally {
+	    	try {
+	    		is.close();
+	    		os.close();
+	    	}catch(Exception ex) {}
+	    }
+	}
+
+}
+</pre></div></div>
+<p>Lets imitate this behavior with camel.</p>
 
 <ul>
-
-<li><a href="./project-info.html">Project Information</a>
-
-<ul>
-
-<li><a href="team-list.html">Project Team</a></li>
-
-<li><a href="license.html">Project License</a></li>
-
-<li><a href="source-repository.html">Source Repository</a></li></ul></li>
-
-<li><a href="./project-reports.html">Project Reports</a>
-
-<ul>
-
-<li><a href="apidocs/index.html">Javadoc</a></li>
-
-<li><a href="testapidocs/index.html">Test Javadoc</a></li></ul></li></ul></div></div></div>
+  
+<li>Please open class ``</li>
+</ul></div></div>
       </div>
     </div>
     <div class="clear">
